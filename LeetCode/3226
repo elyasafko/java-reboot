@@ -1,0 +1,21 @@
+class Solution {
+    public int minChanges(int n, int k) {
+        int changes = 0;
+
+        while (n > 0 || k > 0) {
+            int bn = n & 1; // last bit of n
+            int bk = k & 1; // last bit of k
+
+            if (bn == 1 && bk == 0) {
+                changes++;          // flip this 1 to 0
+            } else if (bn == 0 && bk == 1) {
+                return -1;          // impossible to create a 1
+            }
+
+            n >>= 1; // shift right
+            k >>= 1;
+        }
+
+        return changes;
+    }
+}
